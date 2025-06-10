@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    form {
+      width: 300px;
+    }
+    input, select, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <form onsubmit="return validateForm()">
+    <input id="name" placeholder="Name">
+    <input id="address" placeholder="Address">
+    <input id="email" placeholder="Email">
+    <input id="pass" type="password" placeholder="Password">
+    <input id="phone" placeholder="Phone">
+    <select id="course">
+      <option value="">Select Course</option>
+      <option value="btech">BTECH</option>
+      <option value="mca">MCA</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const pass = document.getElementById("pass").value;
+      const phone = document.getElementById("phone").value.trim();
+      const course = document.getElementById("course").value;
+
+      // Name and Address
+      if (name === "") {
+        alert("Enter name");
+        return false;
+      }
+      if (address === "") {
+        alert("Enter address");
+        return false;
+      }
+
+      // Simplified Email Check
+      if (!email.includes("@") || !email.includes(".") || email.length < 5) {
+        alert("Enter a valid email");
+        return false;
+      }
+
+      // Password
+      if (pass.length < 4) {
+        alert("Password too short");
+        return false;
+      }
+
+      // Phone
+      if (phone.length !== 10 || isNaN(phone)) {
+        alert("Enter a valid 10-digit phone number");
+        return false;
+    }
+
+
+      // Course
+      if (course === "") {
+        alert("Select course");
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
